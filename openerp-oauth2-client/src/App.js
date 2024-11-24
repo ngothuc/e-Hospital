@@ -68,7 +68,7 @@ const AppLoading = (
       </Box>
     </Box>
     <Box>
-      <Typography sx={{ mb: 4 }}>OpenERP Team</Typography>
+      <Typography sx={{ mb: 4 }}>OpenERP Team Loading</Typography>
     </Box>
   </Box>
 );
