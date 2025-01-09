@@ -7,10 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -39,6 +36,12 @@ public class AppointmentController {
     public ResponseEntity<?> getAllAppointments() {
         List<Appointment> appointments = appointmentService.getAllAppointments();
         return ResponseEntity.ok().body(appointments);
+    }
+
+    @PostMapping("/create")
+    public ResponseEntity<?> createAppointment(@RequestBody Appointment appointment) {
+        Appointment createdAppointment = appointmentService.createAppointment(appointment);
+        return ResponseEntity.ok().body(createdAppointment);
     }
 
 }

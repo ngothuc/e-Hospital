@@ -12,4 +12,5 @@ public interface AppointmentService {
 
     void synchronizeAppointment(int id, String note);
 
+    Appointment createAppointment(Appointment appointment);
 }
