@@ -8,7 +8,8 @@ import NotFound from "views/errors/NotFound";
 import PrivateRoute from "./PrivateRoute";
 import TeacherRouter from "./TeacherRouter";
 import DemoScreen from "views/DemoScreen";
-import AppointmentListView from "views/AppointmentsListView";
+import AppointmentListView from "views/appointments/AppointmentsListView";
+import CreateAppointment from "views/appointments/CreateAppointment";
 
 const styles = {
   loadingProgress: {
@@ -38,7 +39,8 @@ function MainAppRouter(props) {
           <Route component={() => <></>} exact path="/" />
           <PrivateRoute component={DemoScreen} exact path="/demo" />
           <PrivateRoute component={TeacherRouter} path="/teacher" />
-          <PrivateRoute component={AppointmentListView} exact path="/appointment" />
+          <PrivateRoute component={AppointmentListView} exact path="/appointments-list-view" />
+          <PrivateRoute component={CreateAppointment} exact path="/appointment-create" />
 
           {/* <Route component={error} path="*" /> */}
           <Route component={NotFound} />

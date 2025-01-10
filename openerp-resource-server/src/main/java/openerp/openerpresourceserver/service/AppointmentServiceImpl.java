@@ -59,4 +59,14 @@ public class AppointmentServiceImpl implements AppointmentService {
     public Appointment createAppointment(Appointment appointment) {
         return appointmentRepo.save(appointment);
     }
+
+    @Override
+    public Appointment updateAppointment(Appointment appointment) {
+        return appointmentRepo.save(appointment);
+    }
+
+    @Override
+    public void deleteAppointment(int id) {
+        appointmentRepo.deleteById(id);
+    }
 }
