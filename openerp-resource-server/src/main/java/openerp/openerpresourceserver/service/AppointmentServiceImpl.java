@@ -37,21 +37,14 @@ public class AppointmentServiceImpl implements AppointmentService {
 
     }
 
-
     @Override
-    public void synchronizeAppointment(int id, String note) {
+    public void synchronizeAppointment(int id) {
         Appointment appointment = appointmentRepo.findById(id).orElse(null);
 
         if (appointment == null) {
             appointmentRepo.save(Appointment.builder()
                     .id(id)
-                    .note(note)
                     .build());
-        } else if (StringUtils.compareIgnoreCase(note, appointment.getNote()) != 0) {
-
-            appointment.setNote(note);
-
-            appointmentRepo.save(appointment);
         }
     }
 
@@ -61,8 +54,20 @@ public class AppointmentServiceImpl implements AppointmentService {
     }
 
     @Override
-    public Appointment updateAppointment(Appointment appointment) {
-        return appointmentRepo.save(appointment);
+    public Appointment updateAppointment(int id, Appointment appointment) {
+        Appointment existingAppointment = appointmentRepo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Appointment not found"));
+
+        existingAppointment.setPatientId(appointment.getPatientId());
+        existingAppointment.setDoctorId(appointment.getDoctorId());
+        existingAppointment.setReceptionistId(appointment.getReceptionistId());
+        existingAppointment.setHealthCondition(appointment.getHealthCondition());
+        existingAppointment.setPreliminaryDiagnosis(appointment.getPreliminaryDiagnosis());
+        existingAppointment.setDefinitiveDiagnosis(appointment.getDefinitiveDiagnosis());
+        existingAppointment.setStatus(appointment.getStatus());
+        existingAppointment.setNote(appointment.getNote());
+
+        return appointmentRepo.save(existingAppointment);
     }
 
     @Override

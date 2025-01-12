@@ -3,6 +3,7 @@ package openerp.openerpresourceserver.config.security;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -52,6 +53,10 @@ public class SecurityConfig {
         // Route security
         http
                 .authorizeHttpRequests()
+                .requestMatchers(HttpMethod.GET, "/**").authenticated() // Cho phép GET
+                .requestMatchers(HttpMethod.POST, "/**").authenticated() // Cho phép POST
+                .requestMatchers(HttpMethod.PUT, "/**").authenticated() // Cho phép PUT
+                .requestMatchers(HttpMethod.DELETE, "/**").authenticated() // Cho phép DELETE
                 .anyRequest().authenticated()
                 .and()
                 .requestCache()

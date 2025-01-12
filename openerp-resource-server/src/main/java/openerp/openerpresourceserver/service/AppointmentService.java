@@ -10,11 +10,11 @@ public interface AppointmentService {
 
     Appointment getAppointmentById(int id);
 
-    void synchronizeAppointment(int id, String note);
+    void synchronizeAppointment(int id);
 
     Appointment createAppointment(Appointment appointment);
 
-    Appointment updateAppointment(Appointment appointment);
+    Appointment updateAppointment(int id, Appointment appointment);
 
     void deleteAppointment(int id);
 }

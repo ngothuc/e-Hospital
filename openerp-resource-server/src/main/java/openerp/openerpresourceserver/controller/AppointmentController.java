@@ -22,8 +22,8 @@ public class AppointmentController {
     public void syncAppointment(JwtAuthenticationToken token) {
         Jwt principal = (Jwt) token.getPrincipal();
         appointmentService.synchronizeAppointment(
-                Integer.parseInt(principal.getClaim("preferred_username")),
-                principal.getClaim("note"));
+                Integer.parseInt(principal.getClaim("preferred_username")));
+//                principal.getClaim("note"));
     }
 
     @GetMapping("/{id}")
@@ -44,13 +44,13 @@ public class AppointmentController {
         return ResponseEntity.ok().body(createdAppointment);
     }
 
-    @PutMapping("/update")
-    public ResponseEntity<?> updateAppointment(@RequestBody Appointment appointment) {
-        Appointment updatedAppointment = appointmentService.updateAppointment(appointment);
+    @PutMapping("/update/{id}")
+    public ResponseEntity<?> updateAppointment(@PathVariable int id, @RequestBody Appointment appointment) {
+        Appointment updatedAppointment = appointmentService.updateAppointment(id, appointment);
         return ResponseEntity.ok().body(updatedAppointment);
     }
 
-    @PutMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteAppointment(@PathVariable int id) {
         appointmentService.deleteAppointment(id);
         return ResponseEntity.ok().body("Appointment deleted successfully");

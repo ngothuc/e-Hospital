@@ -23,16 +23,32 @@ public class Appointment {
     @Column(name = "id", updatable = false, nullable = false)
     private int id;
 
-    private int patient_id, doctor_id, receptionist_id;
+    @Column(name = "patient_id")
+    private int patientId;
+
+    @Column(name = "doctor_id")
+    private int doctorId;
+
+    @Column(name = "receptionist_id")
+    private int receptionistId;
 
     @CreatedDate
     @Column(name = "time")
     private Date createdDate;
 
-    private  String health_condition, preliminary_diagnosis, definitive_diagnosis;
+    @Column(name = "health_condition")
+    private String healthCondition;
 
+    @Column(name = "preliminary_diagnosis")
+    private String  preliminaryDiagnosis;
+
+    @Column(name = "definitive_diagnosis")
+    private String definitiveDiagnosis;
+
+    @Column(name = "status")
     private String status;
 
+    @Column(name = "note")
     private String note;
 
 }
