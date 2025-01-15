@@ -56,6 +56,7 @@ function CreateAppointment() {
         updatedFormData
       );
   };
+  
 
   return (
     <div className="formContainer">
@@ -97,7 +98,7 @@ function CreateAppointment() {
           <label>Ghi chú:</label>
           <textarea name="note" value={formData.note} onChange={handleChange} />
         </div>
-        <button type="submit" className="submitButton">Tạo Lịch Hẹn</button>
+        <button type="submit" className="submitButton">Tạo phiếu khám</button>
       </form>
     </div>
   );
